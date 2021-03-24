@@ -1,7 +1,10 @@
 package com.example.demo.mapper;
 
+import com.example.demo.pojo.DistTypeVo;
 import com.example.demo.pojo.Products;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface ProductsMapper extends BaseMapper<Products> {
 
+    List<DistTypeVo> findProductsName();
 }

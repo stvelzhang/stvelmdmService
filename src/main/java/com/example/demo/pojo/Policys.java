@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -33,10 +35,13 @@ public class Policys implements Serializable {
     @ApiModelProperty(value = "策略名")
     private String policy;
 
+    @JsonProperty("phone_common")
     private String phoneCommon;
 
+    @JsonProperty("phone_global")
     private String phoneGlobal;
 
+    @JsonProperty("phone_others")
     private String phoneOthers;
 
     private String firewall;
@@ -48,8 +53,10 @@ public class Policys implements Serializable {
     private String policyG;
 
     @TableField(fill = FieldFill.INSERT)
+    @JsonProperty("create_time")
     private Date createTime;
 
+    @JsonProperty("create_user")
     private String createUser;
 
     @TableField(fill = FieldFill.UPDATE)

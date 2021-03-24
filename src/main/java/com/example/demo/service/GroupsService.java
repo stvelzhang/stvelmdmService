@@ -2,6 +2,9 @@ package com.example.demo.service;
 
 import com.example.demo.pojo.Groups;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.demo.pojo.DistTypeVo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface GroupsService extends IService<Groups> {
 
+    List<DistTypeVo> findGroupsName();
 }

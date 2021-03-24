@@ -1,11 +1,8 @@
 package com.example.demo.pojo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.util.Date;
-import com.baomidou.mybatisplus.annotation.Version;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -45,6 +42,10 @@ public class Devices implements Serializable {
     @ApiModelProperty(value = "策略")
     private String policy;
 
+    //devices 表中没有这个字段，使用这里要用 ，TableField 标识字段，不然要报错
+    @TableField(exist = false)
+    private String firewall;
+
     @ApiModelProperty(value = "设备用户名")
     private String devUser;
 
@@ -65,10 +66,11 @@ public class Devices implements Serializable {
     private Date createTime;
 
     @ApiModelProperty(value = "更新时间")
-    @TableField(fill = FieldFill.UPDATE)
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
 
     @ApiModelProperty(value = "删除标示  0正常 1删除")
+    @TableLogic
     private Integer isDelete;
 
 

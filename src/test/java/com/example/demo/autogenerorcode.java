@@ -54,8 +54,9 @@ public class autogenerorcode {
 
 
         StrategyConfig strategy = new StrategyConfig();
-        strategy.setInclude("devices","firewalls","groups","policy_phone_common",
-                "policy_phone_global","policy_phone_others","policys","products","task_time");
+        /*strategy.setInclude("devices","firewalls","groups","policy_phone_common",
+                "policy_phone_global","policy_phone_others","policys","products","task_time");*/
+        strategy.setInclude("task_time");
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         strategy.setEntityLombokModel(true);

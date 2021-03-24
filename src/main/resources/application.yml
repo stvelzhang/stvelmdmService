@@ -3,12 +3,23 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/edthings?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://localhost:3306/edthings?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
 mybatis-plus:
-  mapper-locations: classpath:generator/*.xml
+  mapper-locations: classpath:com/example/demo/mapper/xml/**.xml
+  type-aliases-package: com.example.demo.pojo
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  #全局逻辑删除字段值
+  #逻辑已删除值(默认为 1)
+  #逻辑未删除值(默认为 0)
+  global-config:
+    db-config:
+      logic-not-delete-value: 0
+      logic-delete-value: 1
+      logic-delete-field: isDelete
 logging:
   level:
     root: warn

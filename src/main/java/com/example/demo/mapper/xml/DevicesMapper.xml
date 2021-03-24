@@ -1,5 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.DevicesMapper">
+    <!--<select id="findDevicesDynamic" resultType="Devices">
+        SELECT id,sn,policy,dev_user FROM devices
+        <trim prefix="WHERE" prefixOverrides="AND|OR" suffixOverrides="AND|OR">
+            <if test="prdModel != null and prdModel != '' ">
+                AND prd_model = #{prdModel}
+            </if>
+            <if test="gupName != null and gupName != '' ">
+                AND gup_name = #{gupName}
+            </if>
+        </trim>
+    </select>-->
+    <select id="findDevicesDynamic" resultType="Devices">
+        SELECT t1.id,t1.sn,t1.policy,t1.dev_user,t2.firewall
+        FROM devices t1
+        LEFT JOIN policys t2 ON t1.policy = t2.policy
+        WHERE 1=1
+        <if test="prdModel != null and prdModel != '' ">
+            AND prd_model = #{prdModel}
+        </if>
+        <if test="gupName != null and gupName != '' ">
+            AND gup_name = #{gupName}
+        </if>
+
+    </select>
+    <select id="findDevicesDynamicWeb" resultType="Devices">
+        SELECT id,sn,policy,prd_model,gup_name,dev_state,dev_remote FROM devices
+        <trim prefix="WHERE" prefixOverrides="AND|OR" suffixOverrides="AND|OR">
+        <if test="prdModel != null and prdModel != '' ">
+            AND prd_model = #{prdModel}
+        </if>
+        <if test="gupName != null and gupName != '' ">
+            AND gup_name = #{gupName}
+        </if>
+        <if test="policy != null and policy != '' ">
+            AND policy = #{policy}
+        </if>
+        <if test="sn != null and sn != '' ">
+            AND sn = #{sn}
+        </if>
+        </trim>
+    </select>
+
+    <select id="findDevicePolicysDynamicWeb" resultType="Devices">
+        SELECT id,sn,policy,gup_name,dev_user,update_time FROM devices
+        <trim prefix="WHERE" prefixOverrides="AND|OR" suffixOverrides="AND|OR">
+            <if test="prdModel != null and prdModel != '' ">
+                AND prd_model = #{prdModel}
+            </if>
+            <if test="gupName != null and gupName != '' ">
+                AND gup_name = #{gupName}
+            </if>
+            <if test="policy != null and policy != '' ">
+                AND policy = #{policy}
+            </if>
+            <if test="sn != null and sn != '' ">
+                AND sn = #{sn}
+            </if>
+        </trim>
+    </select>
 
 </mapper>

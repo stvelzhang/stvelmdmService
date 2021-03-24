@@ -27,6 +27,14 @@ public class WebAppResponse {
     return webAppResponse;
   }
 
+  public static WebAppResponse successex(String message){
+    WebAppResponse webAppResponse = new WebAppResponse();
+    webAppResponse.setIsok(true);
+    webAppResponse.setCode(200);
+    webAppResponse.setMessage(message);
+    return webAppResponse;
+  }
+
   //请求成功的响应，带有查询数据（用于数据查询接口）
   public static WebAppResponse success(Object obj){
     WebAppResponse webAppResponse = new WebAppResponse();
@@ -36,6 +44,16 @@ public class WebAppResponse {
     webAppResponse.setData(obj);
     return webAppResponse;
   }
+
+  //请求成功的响应，带有查询数据（用于数据查询接口）
+  public static WebAppResponse error(String message){
+    WebAppResponse webAppResponse = new WebAppResponse();
+    webAppResponse.setIsok(true);
+    webAppResponse.setCode(500);
+    webAppResponse.setMessage(message);
+    return webAppResponse;
+  }
+
 
   //请求成功的响应，带有查询数据（用于数据查询接口）
   public static WebAppResponse success(Object obj, String message){

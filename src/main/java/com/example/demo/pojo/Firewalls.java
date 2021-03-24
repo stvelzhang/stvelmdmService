@@ -5,6 +5,10 @@ import com.baomidou.mybatisplus.annotation.Version;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+import java.lang.reflect.Array;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -29,12 +33,15 @@ public class Firewalls implements Serializable {
     private Integer id;
 
     @ApiModelProperty(value = "防火墙名称")
+    @JsonProperty("firewall_name")
     private String firewallName;
+
 
     @ApiModelProperty(value = "网址的限制")
     private String session;
 
     @ApiModelProperty(value = "应用包名的限制")
+    @JsonProperty("packageName")
     @TableField("packageName")
     private String packagename;
 

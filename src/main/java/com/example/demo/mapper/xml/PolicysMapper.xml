@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.PolicysMapper">
+    <select id="findPolicysName" resultType="DistTypeVo">
+        SELECT id,policy AS name FROM policys WHERE is_delete = 0
+
+    </select>
+
+    <select id="findPolicys" resultType="Policys">
+        SELECT id,policy,create_user, create_time FROM policys
+        <trim prefix="WHERE" prefixOverrides="AND|OR" suffixOverrides="AND|OR">
+            <if test="policy != null and policy != '' ">
+                AND policy = #{policy}
+            </if>
+            AND is_delete = 0
+
+
+        </trim>
+    </select>
 
 </mapper>
