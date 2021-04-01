@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.AlarmContactMapper">
+    <select id="getAlarmContacts" resultType="AlarmContact">
+        SELECT * FROM alarm_contact
+        <trim prefix="WHERE" prefixOverrides="AND|OR" suffixOverrides="AND|OR">
+            <if test="namePhoneEmail != null and namePhoneEmail != '' ">
+                AND  (alarm_phone   LIKE concat('%', #{namePhoneEmail}, '%') OR  alarm_name LIKE concat('%', #{namePhoneEmail}, '%')  OR alarm_email LIKE concat('%', #{namePhoneEmail}, '%') )
+            </if>
+            <if test="product != null and product != '' ">
+                AND product = #{product}
+            </if>
+            AND is_delete = 0
+
+
+
+        </trim>
+    </select>
+</mapper>

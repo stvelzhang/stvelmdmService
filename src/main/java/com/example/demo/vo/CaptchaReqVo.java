@@ -1,6 +1,5 @@
-package com.example.demo.pojo;
+package com.example.demo.vo;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,19 +11,22 @@ import lombok.NoArgsConstructor;
  * </p>
  *
  * @author stvelzhang
- * @since 2021-03-10
+ * @since 2021-03-30
  */
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class DistTypeVo {
+public class CaptchaReqVo {
 
 
-    private Integer id;
+    private String type;
 
     private String name;
 
-    private String nameValue;
+    private String phone;
+
+    private String email;
+
 
 }

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.DeviceTemplateMapper">
+    <select id="findTemplates" resultType="DeviceTemplateVo">
+        SELECT template_name,COUNT(*) AS node_count, template_device,update_time FROM device_template  WHERE is_delete = 0 GROUP BY template_name
+        <trim prefix="HAVING" prefixOverrides="AND|OR" suffixOverrides="AND|OR">
+            <if test="templateName != null and templateName != '' ">
+                AND template_name  = #{templateName}
+            </if>
+            <if test="product != null and product != '' ">
+                AND template_device LIKE concat('%', #{product}, '%')
+            </if>
+
+
+
+        </trim>
+    </select>
+
+    <select id="findNodeDistType" resultType="DistTypeVo">
+        SELECT id,data_node_name AS name, node_name AS name_value FROM  device_template  WHERE is_delete = 0 AND alarm_enable = 2
+        <if test="product != null and product != '' ">
+            AND template_device = #{product}
+        </if>
+    </select>
+
+</mapper>
