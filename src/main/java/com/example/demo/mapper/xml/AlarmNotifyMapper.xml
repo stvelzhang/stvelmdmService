@@ -1,5 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.AlarmNotifyMapper">
+    <select id="findAlarmNotifys" resultType="AlarmNotify">
+        SELECT id,alarm_notify_name,enable, alarm_method,product,alarm_contacts,update_time FROM alarm_notify
+        <trim prefix="WHERE" prefixOverrides="AND|OR" suffixOverrides="AND|OR">
+            <if test="alarmNotifyName != null and alarmNotifyName != '' ">
+                AND alarm_notify_name LIKE concat('%', #{alarmNotifyName}, '%')
+            </if>
+            <if test="product != null and product != '' ">
+                AND product = #{product}
+            </if>
+            AND is_delete = 0
+
+
+        </trim>
+    </select>
+
+    <update id="updateAlarmNotify" parameterType="AlarmNotify">
+        update alarm_notify
+        <set>
+            <if test="alarmNotifyName != null and alarmNotifyName != ''">alarm_notify_name = #{alarmNotifyName},</if>
+            <if test="enable != null and enable != ''">enable = #{enable},</if>
+            <if test="alarmMethod != null and alarmMethod != ''">alarm_method = #{alarmMethod},</if>
+            <if test="alarmContacts != null and alarmContacts != ''">alarm_contacts = #{alarmContacts},</if>
+            <if test="product != null and product != ''">product = #{product},</if>
+            <if test="nodeName != null and nodeName != ''">node_name = #{nodeName},</if>
+            <if test="notifyPushType != null and notifyPushType != ''">notify_push_type = #{notifyPushType},</if>
+            <if test="notifySilenSec != null and notifySilenSec != ''">notify_silen_sec = #{notifySilenSec},</if>
+        </set>
+        where id = #{id}
+    </update>
 
 </mapper>

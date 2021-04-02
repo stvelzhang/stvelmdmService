@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -34,7 +36,9 @@ public class AlarmNotify implements Serializable {
     private String alarmNotifyName;
 
     @ApiModelProperty(value = "报警通知是否开启，")
-    private Integer enable;
+    @JsonProperty("alarmEnable")
+    @TableField("enable")
+    private Integer enable; //enable 在前端控件是特殊字符，需要改造下。
 
     @ApiModelProperty(value = "报警通知的具体上报数据参数名")
     private String nodeName;
